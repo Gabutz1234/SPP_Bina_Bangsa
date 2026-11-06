@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../config/koneksi.php';
+require_once __DIR__ . '/../config/auth.php';
+$user = require_role('kepala_sekolah');
+$stats = ['siswa' => 0, 'lunas' => 0, 'belum' => 0, 'tunggakan' => 0, 'penerimaan' => 0, 'nominal_tunggakan' => 0];
+$recent = [];
+try {
+    $stats['siswa'] = (int) $pdo->query("SELECT COUNT(*) FROM siswa WHERE status='aktif'")->fetchColumn();
+    $stats['lunas'] = (int) $pdo->query("SELECT COUNT(*) FROM tagihan_spp WHERE status='LUNAS'")->fetchColumn();
+    $stats['belum'] = (int) $pdo->query("SELECT COUNT(*) FROM tagihan_spp WHERE status='BELUM_BAYAR'")->fetchColumn();
+    $stats['tunggakan'] = (int) $pdo->query("SELECT COUNT(*) FROM tagihan_spp WHERE status='TUNGGAKAN'")->fetchColumn();
+    $stats['penerimaan'] = (int) $pdo->query("SELECT COALESCE(SUM(nominal_pembayaran),0) FROM pembayaran")->fetchColumn();
+    $stats['nominal_tunggakan'] = (int) $pdo->query("SELECT COALESCE(SUM(nominal),0) FROM tagihan_spp WHERE status='TUNGGAKAN'")->fetchColumn();
+    $recent = $pdo->query("SELECT t.order_id, s.nama, t.nominal, t.status_transaksi, COALESCE(t.waktu_transaksi,t.created_at) AS waktu FROM transaksi_payment_gateway t LEFT JOIN siswa s ON s.id_siswa=t.id_siswa ORDER BY waktu DESC LIMIT 8")->fetchAll();
+} catch (Throwable $e) { error_log('Dashboard kepsek: ' . $e->getMessage()); }
+function rp(int $value): string { return 'Rp ' . number_format($value, 0, ',', '.'); }
+function pill(string $status): string { $class = in_array($status, ['settlement','capture','LUNAS'], true) ? 'success' : (in_array($status, ['pending','BELUM_BAYAR'], true) ? 'warning' : (in_array($status, ['TUNGGAKAN','deny','cancel','expire'], true) ? 'danger' : 'neutral')); return '<span class="status-pill ' . $class . '">' . htmlspecialchars($status, ENT_QUOTES, 'UTF-8') . '</span>'; }
+?>
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dashboard Kepala Sekolah | SPP Bina Bangsa</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0"><link rel="stylesheet" href="../assets/css/kepala_sekolah/sidebar.css"><link rel="stylesheet" href="../assets/css/kepala_sekolah/dashboard.css"></head><body>
+<?php require __DIR__ . '/partials/sidebar.php'; ?><main class="staff-main"><header class="staff-header"><div><h1>Dashboard Kepala Sekolah</h1><p>Pantau kesehatan pembayaran SPP tanpa mengubah data transaksi.</p></div><div class="staff-role"><strong><?= htmlspecialchars((string) $user['nama'], ENT_QUOTES, 'UTF-8') ?></strong>Monitoring read-only</div></header>
+<section class="staff-stats" id="ringkasan"><article class="staff-card blue"><span>Siswa aktif</span><strong><?= $stats['siswa'] ?></strong><small>Data siswa terdaftar</small></article><article class="staff-card green"><span>Tagihan lunas</span><strong><?= $stats['lunas'] ?></strong><small>Status pembayaran</small></article><article class="staff-card orange"><span>Belum bayar</span><strong><?= $stats['belum'] ?></strong><small>Perlu dipantau</small></article><article class="staff-card red"><span>Total tunggakan</span><strong><?= rp($stats['nominal_tunggakan']) ?></strong><small><?= $stats['tunggakan'] ?> tagihan</small></article></section>
+<section class="staff-grid"><article class="staff-panel" id="transaksi"><h2>Transaksi terbaru</h2><p>Aktivitas payment gateway terbaru.</p><div class="staff-table-wrap"><table class="staff-table"><thead><tr><th>Order ID</th><th>Siswa</th><th>Nominal</th><th>Status</th></tr></thead><tbody><?php if (!$recent): ?><tr><td class="empty-state" colspan="4">Belum ada transaksi.</td></tr><?php else: foreach ($recent as $row): ?><tr><td><?= htmlspecialchars($row['order_id'], ENT_QUOTES, 'UTF-8') ?></td><td><?= htmlspecialchars($row['nama'] ?? 'Tidak ditemukan', ENT_QUOTES, 'UTF-8') ?></td><td><?= rp((int) $row['nominal']) ?></td><td><?= pill((string) $row['status_transaksi']) ?></td></tr><?php endforeach; endif; ?></tbody></table></div></article><article class="staff-panel" id="laporan"><h2>Ringkasan penerimaan</h2><p>Total pembayaran yang tercatat sistem.</p><strong style="display:block;font-size:28px;margin:25px 0 8px"><?= rp($stats['penerimaan']) ?></strong><span style="color:var(--staff-muted);font-size:13px">Gunakan menu laporan untuk analisis periode dan kelas.</span></article></section></main></body></html>

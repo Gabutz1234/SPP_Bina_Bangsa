@@ -1,0 +1,155 @@
+:root {
+    --dashboard-bg: #f5f7fb;
+    --dashboard-text: #172033;
+    --dashboard-muted: #778197;
+    --dashboard-border: #e8ecf3;
+    --dashboard-card: #fff;
+    --dashboard-primary: #3b82f6;
+    --dashboard-width: 260px;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--dashboard-bg); color: var(--dashboard-text); font-family: Inter, "Segoe UI", Arial, sans-serif; }
+.dashboard-main { min-height: 100vh; margin-left: var(--dashboard-width); padding: 30px; }
+.dashboard-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
+.dashboard-header h1 { margin: 0 0 8px; color: #172033; font-size: 28px; font-weight: 750; letter-spacing: -.7px; }
+.dashboard-header p { margin: 0; color: var(--dashboard-muted); font-size: 13px; }
+.student-greeting { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; font-size: 13px; }
+.student-greeting span { color: var(--dashboard-muted); }
+.student-greeting strong { font-size: 14px; }
+
+.welcome-card { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-bottom: 22px; padding: 27px 30px; border: 1px solid #cfe0fb; border-radius: 16px; background: linear-gradient(115deg, #eaf2ff, #f5f9ff); }
+.welcome-card h2 { margin: 4px 0 8px; color: #172033; font-size: clamp(23px, 3vw, 34px); letter-spacing: -.8px; }
+.welcome-card p { margin: 0; color: #65748d; font-size: 13px; }
+.welcome-card .welcome-meta { min-width: 190px; padding-left: 25px; border-left: 1px solid #c7d9f4; }
+.welcome-meta span, .welcome-meta strong { display: block; }
+.welcome-meta span { margin-bottom: 7px; color: #71819a; font-size: 11px; }
+.welcome-meta strong { color: #1e4d91; font-size: 17px; }
+
+.financial-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, .85fr);
+    gap: 20px;
+    align-items: stretch;
+    margin-bottom: 24px;
+}
+
+.current-bill-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .75fr) minmax(125px, .6fr) auto;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 25px 28px;
+    border: 1px solid #f2d28a;
+    border-left: 6px solid #e7a91b;
+    border-radius: 16px;
+    background: linear-gradient(108deg, #fff9e8 0%, #fffdf7 70%);
+    box-shadow: 0 8px 22px rgba(190, 136, 22, .09);
+    overflow: hidden;
+}
+.current-bill-feature.status-paid { border-color: #a8dec7; border-left-color: #159b62; background: linear-gradient(108deg, #effaf5, #fbfffd 70%); }
+.current-bill-feature.status-overdue { border-color: #efb6b6; border-left-color: #d65d5d; background: linear-gradient(108deg, #fff1f1, #fffafa 70%); }
+.feature-label { display: block; margin-bottom: 9px; color: #b27b13; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+.status-paid .feature-label { color: #16815a; }
+.status-overdue .feature-label { color: #bb4a4a; }
+.current-bill-content h2 { margin: 0 0 7px; color: #172033; font-size: clamp(20px, 2.5vw, 28px); letter-spacing: -.6px; }
+.current-bill-content, .current-bill-amount, .current-bill-meta { min-width: 0; }
+.current-bill-content p { margin: 0; color: #71809a; font-size: 12px; line-height: 1.5; }
+.current-bill-amount { padding-left: 25px; border-left: 1px solid #efdca9; }
+.status-paid .current-bill-amount { border-color: #b9e3d2; }
+.status-overdue .current-bill-amount { border-color: #f0c5c5; }
+.current-bill-amount span, .current-bill-meta span, .current-bill-meta small { display: block; color: #8a7952; font-size: 10px; }
+.current-bill-amount strong { display: block; margin-top: 6px; color: #172033; font-size: clamp(22px, 2.3vw, 30px); white-space: nowrap; }
+.current-bill-meta .status-badge { margin: 6px 0 8px; }
+.current-bill-meta small { color: #71809a; line-height: 1.4; overflow-wrap: anywhere; }
+.bill-pay-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 15px; border-radius: 9px; background: #172033; color: #fff; font-size: 11px; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background .2s ease, transform .2s ease; }
+.bill-pay-button:hover { background: #2a4772; transform: translateY(-1px); }
+.bill-pay-button .material-symbols-rounded { font-size: 17px; }
+
+.overdue-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+.overdue-card .panel-heading { align-items: flex-start; padding-bottom: 14px; }
+.overdue-card .summary-icon { flex-shrink: 0; }
+.overdue-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    margin: 0 24px 24px;
+    padding: 23px 20px;
+    border: 1px solid #f0d7d7;
+    border-radius: 12px;
+    background: #fff8f8;
+}
+.overdue-content strong { color: #c94d4d; font-size: clamp(24px, 2.5vw, 33px); }
+.overdue-content span { margin-top: 9px; color: var(--dashboard-muted); font-size: 11px; line-height: 1.5; }
+
+.student-summary-grid { display: grid; grid-template-columns: minmax(280px, 360px); gap: 18px; margin-bottom: 24px; }
+.summary-card { display: flex; align-items: flex-start; gap: 15px; min-width: 0; padding: 21px; border: 1px solid var(--dashboard-border); border-radius: 16px; background: var(--dashboard-card); box-shadow: 0 3px 12px rgba(22,34,55,.025); }
+.summary-icon { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; flex-shrink: 0; border-radius: 13px; font-size: 21px; font-weight: 700; }
+.summary-icon.blue { color: #3978f6; background: #eaf1ff; }
+.summary-icon.orange { color: #dc7b18; background: #fff1df; }
+.summary-icon.green { color: #159b62; background: #e4f8ed; }
+.summary-card p { margin: 2px 0 8px; color: var(--dashboard-muted); font-size: 12px; }
+.summary-card h2 { margin: 0 0 7px; color: #172033; font-size: clamp(18px, 2vw, 24px); line-height: 1.25; overflow-wrap: anywhere; }
+.summary-card small { color: var(--dashboard-muted); font-size: 11px; }
+
+.dashboard-columns { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(300px, .85fr); gap: 20px; }
+.panel { border: 1px solid var(--dashboard-border); border-radius: 16px; background: var(--dashboard-card); box-shadow: 0 3px 12px rgba(22,34,55,.025); }
+.panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding: 23px 24px 17px; }
+.panel-heading h2 { margin: 0 0 7px; color: #172033; font-size: 17px; }
+.panel-heading p { margin: 0; color: var(--dashboard-muted); font-size: 12px; }
+.panel-link { color: var(--dashboard-primary); font-size: 12px; text-decoration: none; white-space: nowrap; }
+.panel-link:hover { text-decoration: underline; }
+
+.student-profile { display: flex; align-items: center; gap: 15px; padding: 0 24px 22px; }
+.student-avatar { display: flex; align-items: center; justify-content: center; width: 55px; height: 55px; border-radius: 50%; background: #dbeafe; color: #1d4ed8; font-size: 22px; font-weight: 700; }
+.student-profile strong, .student-profile span { display: block; }
+.student-profile strong { margin-bottom: 5px; font-size: 15px; }
+.student-profile span { color: var(--dashboard-muted); font-size: 12px; }
+
+.account-card { margin-bottom: 20px; padding-bottom: 22px; }
+.account-card .panel-heading { padding-bottom: 15px; }
+.va-box { margin: 0 24px; padding: 18px; border-radius: 12px; background: #172033; color: #fff; }
+.va-box span, .va-box strong { display: block; }
+.va-box span { margin-bottom: 8px; color: #a7b7cf; font-size: 11px; }
+.va-box strong { color: #fff; font-size: clamp(22px, 2vw, 28px); letter-spacing: 1.2px; }
+.va-box small { display: block; margin-top: 9px; color: #a7b7cf; font-size: 10px; }
+
+.bill-highlight { margin: 0 24px 23px; padding: 19px; border: 1px solid #e8ecf3; border-radius: 12px; background: #fbfcfe; }
+.bill-highlight-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; }
+.bill-highlight small, .bill-highlight span { display: block; color: var(--dashboard-muted); font-size: 11px; }
+.bill-highlight strong { display: block; margin: 6px 0 0; color: #172033; font-size: 17px; }
+.bill-amount { margin-top: 18px; padding-top: 15px; border-top: 1px solid #e8ecf3; }
+.bill-amount strong { font-size: 24px; }
+.status-badge { display: inline-flex; padding: 6px 9px; border-radius: 99px; font-size: 10px; font-weight: 700; white-space: nowrap; }
+.status-paid { background: #e4f8ed; color: #159b62; }
+.status-pending { background: #fff4d9; color: #bd8416; }
+.status-overdue { background: #fee7e7; color: #ca4444; }
+
+.history-panel { overflow: hidden; }
+.history-list { padding: 0 24px 10px; }
+.history-row { display: grid; grid-template-columns: 42px minmax(0,1fr) auto; align-items: center; gap: 13px; padding: 14px 0; border-top: 1px solid #edf0f5; }
+.month-badge { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; background: #edf3fd; color: #3b73cf; }
+.month-badge strong { font-size: 11px; }
+.month-badge small { margin-top: 2px; font-size: 9px; }
+.history-info strong, .history-info small { display: block; }
+.history-info strong { font-size: 12px; }
+.history-info small { margin-top: 4px; color: var(--dashboard-muted); font-size: 10px; }
+.history-status-success { color: #159b62; font-weight: 700; }
+.history-status-pending { color: #bd8416; font-weight: 700; }
+.history-status-failed { color: #c13535; font-weight: 700; }
+.history-status-expired { color: #64748b; font-weight: 700; }
+.history-status-neutral { color: #64748b; font-weight: 700; }
+.history-amount { color: #172033; font-size: 12px; font-weight: 700; }
+.empty-state { padding: 35px 15px; color: var(--dashboard-muted); font-size: 12px; text-align: center; }
+.database-error { margin-bottom: 20px; padding: 13px 15px; border: 1px solid #fecaca; border-radius: 9px; background: #fef2f2; color: #b91c1c; font-size: 13px; }
+
+@media (max-width: 1050px) { .dashboard-columns, .financial-overview { grid-template-columns: 1fr; } }
+@media (max-width: 1050px) { .current-bill-feature { grid-template-columns: 1.2fr .8fr; } .current-bill-amount { border-left: 0; padding-left: 0; } .bill-pay-button { justify-self: start; } }
+@media (max-width: 800px) { .student-summary-grid { grid-template-columns: 1fr; } .current-bill-feature { grid-template-columns: 1fr 1fr; gap: 19px; } .current-bill-content { grid-column: 1/-1; } }
+@media (max-width: 768px) { .dashboard-main { margin-left: 0; padding: 22px 18px; } .dashboard-header { align-items: flex-start; } .student-greeting { display: none; } .welcome-card { align-items: flex-start; flex-direction: column; } .welcome-card .welcome-meta { width: 100%; padding: 16px 0 0; border-top: 1px solid #c7d9f4; border-left: 0; } .current-bill-feature { grid-template-columns: 1fr; padding: 23px 21px; } .current-bill-content { grid-column: auto; } .current-bill-amount { padding: 14px 0 0; border-top: 1px solid #efdca9; } .status-paid .current-bill-amount, .status-overdue .current-bill-amount { border-top-color: inherit; } .current-bill-meta { padding-top: 2px; } .bill-pay-button { width: 100%; } }

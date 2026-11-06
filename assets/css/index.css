@@ -1,0 +1,581 @@
+
+:root {
+    --bg: #f2f5f9;
+    --surface: #ffffff;
+    --primary: #173b68;
+    --primary-hover: #102c50;
+    --accent: #8ce0c1;
+    --text: #17263b;
+    --muted: #748196;
+    --border: #e1e7ef;
+    --danger: #b42332;
+    --danger-bg: #fff0f1;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(140, 224, 193, 0.17),
+            transparent 35%
+        ),
+        var(--bg);
+}
+
+.auth-shell {
+    display: grid;
+    grid-template-columns: 1fr 0.92fr;
+    width: 100%;
+    max-width: 1120px;
+    min-height: 650px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 24px;
+    box-shadow: 0 24px 70px rgba(25, 43, 70, 0.09);
+}
+
+/* Panel kiri */
+
+.auth-intro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 58px 52px;
+    overflow: hidden;
+    color: white;
+    background:
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(140, 224, 193, 0.16),
+            transparent 35%
+        ),
+        linear-gradient(145deg, #102d51, #1b456f);
+}
+
+.auth-intro::after {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    right: -170px;
+    top: 35%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 35px rgba(255, 255, 255, 0.025),
+        0 0 0 70px rgba(255, 255, 255, 0.025);
+    pointer-events: none;
+}
+
+.brand-mark {
+    display: inline-block;
+    color: inherit;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    text-decoration: none;
+}
+
+.brand-mark span {
+    color: var(--accent);
+    margin: 0 2px;
+}
+
+.eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.7;
+}
+
+.auth-intro > .eyebrow {
+    margin-top: 92px;
+    color: var(--accent);
+}
+
+.auth-intro h1 {
+    max-width: 410px;
+    margin-top: 20px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -1.8px;
+}
+
+.auth-intro h1 {
+    display: block;
+    color: var(--accent);
+    font-style: normal;
+}
+
+.intro-copy {
+    max-width: 365px;
+    margin-top: 22px;
+    color: #d0dceb;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.signal-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 370px;
+    margin-top: 44px;
+    padding: 19px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(8px);
+}
+
+.signal-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.signal-card strong,
+.signal-card span {
+    display: block;
+}
+
+.signal-card strong {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.signal-card span {
+    margin-top: 4px;
+    color: #c3d2e4;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.intro-foot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 38px;
+    color: #c3d2e4;
+    font-size: 12px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(140, 224, 193, 0.12);
+}
+
+/* Panel kanan */
+
+.auth-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 56px 48px 24px;
+    background: var(--surface);
+}
+
+.auth-form-wrap {
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+}
+
+.auth-panel .eyebrow {
+    color: #557a9e;
+}
+
+.auth-panel h2 {
+    margin-top: 12px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 29px;
+    line-height: 1.3;
+    letter-spacing: -1px;
+}
+
+.muted {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.login-form label {
+    margin-bottom: 9px;
+    color: #34445a;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.login-form input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 15px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: #fbfcfe;
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+}
+
+.login-form input::placeholder {
+    color: #a2adbc;
+}
+
+.login-form input:focus {
+    border-color: #426d9b;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(66, 109, 155, 0.12);
+}
+
+.label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 21px;
+}
+
+.label-row label {
+    margin-bottom: 9px;
+}
+
+.quiet {
+    margin-bottom: 9px;
+    color: #9aa5b4;
+    font-size: 10px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 49px;
+    padding: 0 17px;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    transition:
+        background 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.button-primary {
+    margin-top: 27px;
+    color: white;
+    background: var(--primary);
+}
+
+.button-primary span {
+    font-size: 19px;
+    color: var(--accent);
+}
+
+.button-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 7px 18px rgba(23, 59, 104, 0.18);
+}
+
+.button-primary:active {
+    transform: translateY(1px);
+}
+
+.button:focus-visible {
+    outline: 3px solid #8ce0c1;
+    outline-offset: 3px;
+}
+
+.button-wide {
+    width: 100%;
+}
+
+.alert {
+    margin-top: 22px;
+    padding: 13px 14px;
+    border-radius: 9px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.alert-error {
+    border: 1px solid #f5c6cb;
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.security-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 14px;
+    border: 1px solid #e3eee9;
+    border-radius: 10px;
+    background: #f6fbf8;
+}
+
+.security-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: #d8f4e7;
+    color: #247651;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.security-note p {
+    color: #5b756a;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.auth-footer {
+    padding-top: 30px;
+    color: #8b97a8;
+    font-size: 10px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.auth-footer span {
+    padding: 0 5px;
+    color: #c1c9d3;
+}
+
+.mobile-brand {
+    display: none;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .auth-page {
+        padding: 20px;
+    }
+
+    .auth-shell {
+        grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .auth-intro {
+        padding: 42px 30px;
+    }
+
+    .auth-intro > .eyebrow {
+        margin-top: 70px;
+    }
+
+    .auth-intro h1 {
+        font-size: 36px;
+    }
+
+    .auth-panel {
+        padding: 42px 30px 22px;
+    }
+
+    .signal-card {
+        padding: 14px;
+    }
+}
+
+/* Ponsel */
+
+@media (max-width: 650px) {
+    .auth-page {
+        display: block;
+        padding: 0;
+        background: white;
+    }
+
+    .auth-shell {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .auth-intro {
+        display: none;
+    }
+
+    .auth-panel {
+        flex: 1;
+        justify-content: flex-start;
+        padding: 32px 24px 22px;
+    }
+
+    .auth-form-wrap {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .mobile-brand {
+        display: inline-block;
+        margin-bottom: 35px;
+        color: var(--primary);
+    }
+
+    .auth-panel h2 {
+        font-size: 27px;
+    }
+
+    .auth-footer {
+        margin-top: auto;
+        padding-top: 40px;
+    }
+
+    .login-form {
+        margin-top: 25px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+
+.school-info {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+    max-width: 390px;
+    margin-top: 34px;
+}
+
+.school-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.school-info-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent);
+    font-size: 19px;
+}
+
+.school-info-item strong,
+.school-info-item span,
+.school-info-item a {
+    display: block;
+}
+
+.school-info-item strong {
+    margin-bottom: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.school-info-item span,
+.school-info-item a {
+    color: #d0dceb;
+    font-size: 11px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.school-info-item a {
+    text-decoration: none;
+}
+
+.school-info-item a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* Penyesuaian panel pengenalan */
+.auth-intro h1 {
+    font-size: clamp(32px, 3.4vw, 42px);
+}
+
+.auth-intro > .eyebrow {
+    margin-top: 60px;
+}
+
+.intro-foot {
+    padding-top: 28px;
+}
+
+@media (max-width: 900px) {
+    .auth-intro > .eyebrow {
+        margin-top: 45px;
+    }
+
+    .school-info {
+        gap: 17px;
+        margin-top: 25px;
+    }
+
+    .school-info-item {
+        gap: 10px;
+    }
+}

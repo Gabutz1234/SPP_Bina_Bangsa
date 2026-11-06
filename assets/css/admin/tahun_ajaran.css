@@ -1,0 +1,53 @@
+:root { --page-bg:#f4f7fb; --card:#fff; --ink:#172033; --muted:#718096; --line:#e4eaf2; --blue:#2563eb; --blue-dark:#1d4ed8; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink); font-family:Inter,"Segoe UI",Arial,sans-serif; }
+.tahun-main { min-height:100vh; margin-left:260px; padding:34px clamp(18px,3vw,42px); }
+.page-heading { margin-bottom:26px; }
+.page-heading h1 { margin:0 0 7px; font-size:clamp(25px,3vw,32px); letter-spacing:-.7px; }
+.page-heading p,.list-heading p { margin:0; color:var(--muted); font-size:13px; line-height:1.6; }
+.tahun-card { overflow:hidden; border:1px solid var(--line); border-radius:16px; padding:26px; background:var(--card); box-shadow:0 10px 28px rgba(31,51,80,.045); }
+.list-heading { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:22px; }
+.list-heading h2 { margin:0 0 6px; font-size:18px; }
+.search-form { display:flex; align-items:center; gap:9px; width:100%; margin-bottom:20px; }
+.search-form input { flex:1 1 auto; min-width:0; padding:11px 12px; border:1px solid #d7e0eb; border-radius:9px; outline:0; color:var(--ink); font:inherit; font-size:13px; }
+.search-form input:focus,.tahun-form input:focus,.tahun-form select:focus { border-color:#8bb2f8; box-shadow:0 0 0 3px rgba(37,99,235,.1); }
+.btn { display:inline-flex; align-items:center; justify-content:center; min-height:39px; padding:0 14px; border:1px solid transparent; border-radius:9px; font:inherit; font-size:12px; font-weight:750; text-decoration:none; cursor:pointer; transition:.2s ease; white-space:nowrap; }
+.btn-primary { background:var(--blue); color:#fff; box-shadow:0 4px 10px rgba(37,99,235,.14); }
+.btn-primary:hover { background:var(--blue-dark); }
+.btn-secondary { border-color:#d7e0eb; background:#fff; color:#475569; }
+.btn-secondary:hover { background:#f8fafc; }
+.btn-danger { background:#fef2f2; color:#b91c1c; }
+.btn-danger:hover { background:#fee2e2; }
+.btn-active { background:#ecfdf5; color:#047857; }
+.btn-active:hover { background:#d1fae5; }
+.btn-small { min-height:32px; padding:0 10px; font-size:11px; }
+.table-wrap { width:100%; overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+th,td { padding:14px 13px; border-bottom:1px solid #edf0f5; text-align:left; vertical-align:middle; }
+th { background:#f8fafc; color:#64748b; font-size:11px; font-weight:800; letter-spacing:.3px; white-space:nowrap; }
+td { color:#475569; font-size:13px; }
+td strong { color:#1e293b; }
+tbody tr:hover { background:#fbfdff; }
+.status { display:inline-flex; padding:5px 9px; border-radius:30px; font-size:11px; font-weight:750; }
+.status-active { background:#dcfce7; color:#15803d; }
+.status-inactive { background:#f1f5f9; color:#64748b; }
+.action-buttons { display:flex; align-items:center; flex-wrap:wrap; gap:6px; }
+.action-buttons form { margin:0; }
+.empty-state { padding:38px!important; text-align:center!important; color:#94a3b8!important; }
+.alert { margin-bottom:18px; padding:13px 15px; border:1px solid; border-radius:10px; font-size:13px; line-height:1.55; }
+.alert-success { border-color:#bbf7d0; background:#f0fdf4; color:#166534; }
+.alert-error { border-color:#fecaca; background:#fef2f2; color:#b91c1c; }
+.modal-shell { position:fixed; inset:0; z-index:1200; display:grid; place-items:center; padding:24px; background:rgba(15,23,42,.48); }
+.modal-card { width:min(100%,650px); max-height:calc(100vh - 48px); overflow-y:auto; padding:26px; border:1px solid var(--line); border-radius:16px; background:#fff; box-shadow:0 24px 70px rgba(15,23,42,.2); }
+.modal-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:22px; }
+.modal-heading h2 { margin:0 0 6px; font-size:19px; }
+.modal-heading p { margin:0; color:var(--muted); font-size:13px; }
+.modal-close { color:#64748b; font-size:28px; line-height:1; text-decoration:none; }
+.modal-close:hover { color:#1e293b; }
+.tahun-form { display:grid; gap:16px; }
+.tahun-form label { display:grid; gap:7px; color:#334155; font-size:12px; font-weight:750; }
+.tahun-form input,.tahun-form select { width:100%; min-height:42px; padding:10px 12px; border:1px solid #d7e0eb; border-radius:9px; outline:0; background:#fff; color:var(--ink); font:inherit; font-size:13px; }
+.date-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+.form-note { margin:0; color:var(--muted); font-size:12px; line-height:1.5; }
+.form-actions { display:flex; justify-content:flex-end; gap:9px; margin-top:4px; }
+@media (max-width:768px) { .tahun-main { margin-left:0; padding:24px 14px; } .tahun-card { padding:18px; } .list-heading { align-items:flex-start; flex-direction:column; } .search-form { align-items:stretch; flex-wrap:wrap; } .search-form input { flex-basis:220px; } .date-grid { grid-template-columns:1fr; } .modal-shell { padding:14px; } .modal-card { max-height:calc(100vh - 28px); padding:20px; } }
